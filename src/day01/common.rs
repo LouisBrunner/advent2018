@@ -2,14 +2,14 @@ use core;
 
 pub type Error = core::Error;
 
-pub fn get_data(session: &str) -> Result<std::vec::Vec<i32>, core::Error>
+pub fn get_data(session: &str) -> Result<Vec<i32>, core::Error>
 {
     let content = try!(core::request(session, 1));
 
     parse_values(content.trim().split("\n"))
 }
 
-pub fn parse_values<'a, Iin>(changes: Iin) -> Result<std::vec::Vec<i32>, core::Error>
+pub fn parse_values<'a, Iin>(changes: Iin) -> Result<Vec<i32>, core::Error>
 where
     Iin: Iterator<Item = &'a str>,
 {
@@ -25,5 +25,5 @@ where
         } else {
             Err(core::Error::Internal{why: format!("invalid frequency change: `{}`", change)})
         }
-    }).collect::<Result<std::vec::Vec<i32>, core::Error>>()
+    }).collect::<Result<Vec<i32>, core::Error>>()
 }

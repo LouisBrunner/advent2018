@@ -1,20 +1,15 @@
-use core;
 use day01::common;
 
-fn calculate_frequency(changes: std::vec::Vec<i32>) -> Result<i32, common::Error>
+fn calculate_frequency(changes: Vec<i32>) -> Result<i32, common::Error>
 {
     Ok(changes.iter().fold(0, |acc, change| {
         acc + change
     }))
 }
 
-fn solve_problem(session: &str) -> Result<i32, common::Error> {
+pub fn solve(session: &str) -> Result<String, common::Error> {
     let data = try!(common::get_data(session));
-    calculate_frequency(data)
-}
-
-pub fn solve(session: &str) -> Result<String, core::Error> {
-    solve_problem(session).map(|frequency| format!("frequency: {}", frequency))
+    calculate_frequency(data).map(|frequency| format!("frequency: {}", frequency))
 }
 
 #[cfg(test)]

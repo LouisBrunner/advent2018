@@ -1,10 +1,9 @@
 use std::collections::HashMap;
 use std::iter::FromIterator;
 
-use core;
 use day01::common;
 
-fn find_frequency(changes: std::vec::Vec<i32>) -> Result<i32, common::Error>
+fn find_frequency(changes: Vec<i32>) -> Result<i32, common::Error>
 {
     let mut found = HashMap::new();
     found.insert(0, true);
@@ -25,13 +24,9 @@ fn find_frequency(changes: std::vec::Vec<i32>) -> Result<i32, common::Error>
     }
 }
 
-fn solve_problem(session: &str) -> Result<i32, common::Error> {
+pub fn solve(session: &str) -> Result<String, common::Error> {
     let data = try!(common::get_data(session));
-    find_frequency(data)
-}
-
-pub fn solve(session: &str) -> Result<String, core::Error> {
-    solve_problem(session).map(|frequency| format!("frequency: {}", frequency))
+    find_frequency(data).map(|frequency| format!("frequency: {}", frequency))
 }
 
 #[cfg(test)]

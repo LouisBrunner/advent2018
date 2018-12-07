@@ -3,11 +3,13 @@ extern crate custom_error;
 extern crate clap;
 use clap::{Arg, App};
 
-use std::process;
 use std::collections::HashMap;
 
 mod core;
 mod day01;
+mod day02;
+
+type Puzzle = fn(&str) -> Result<String, core::Error>;
 
 fn main() {
     let matches = App::new("Advent of Code 2018")
@@ -39,7 +41,8 @@ fn main() {
     let puzzle = matches.value_of("puzzle").unwrap_or("1");
 
     let day_puzzle = [
-        ("1", (day01::puzzle1::solve, day01::puzzle2::solve)),
+        ("1", (day01::puzzle1::solve as Puzzle, day01::puzzle2::solve as Puzzle)),
+        ("2", (day02::puzzle1::solve as Puzzle, day02::puzzle2::solve as Puzzle)),
     ].iter().cloned().collect::<HashMap<_, _>>();
 
     let res = match day_puzzle.get(day) {
@@ -55,7 +58,7 @@ fn main() {
         Ok(content) => println!("{}", content),
         Err(err) => {
             println!("{}", err);
-            process::exit(1);
+            std::process::exit(1);
         }
     }
 }
