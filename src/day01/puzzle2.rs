@@ -3,8 +3,7 @@ use std::iter::FromIterator;
 
 use day01::common;
 
-fn find_frequency(changes: Vec<i32>) -> Result<i32, common::Error>
-{
+fn find_frequency(changes: Vec<i32>) -> Result<i32, common::Error> {
     let mut found = HashMap::new();
     found.insert(0, true);
     let mut frequency = 0;
@@ -15,10 +14,10 @@ fn find_frequency(changes: Vec<i32>) -> Result<i32, common::Error>
             match found.get(&frequency) {
                 Some(_) => {
                     return Ok(frequency);
-                },
+                }
                 None => {
                     found.insert(frequency, true);
-                },
+                }
             };
         }
     }
@@ -34,11 +33,8 @@ mod tests {
     use super::*;
 
     fn do_test(input: Vec<&str>, expected: i32) {
-        let result = find_frequency(
-            common::parse_values(
-                input.into_iter()
-            ).expect("failed")
-        ).expect("failed");
+        let result = find_frequency(common::parse_values(input.into_iter()).expect("failed"))
+            .expect("failed");
         assert_eq!(result, expected);
     }
 

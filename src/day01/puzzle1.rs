@@ -1,15 +1,12 @@
 use day01::common;
 
-fn calculate_frequency(changes: Vec<i32>) -> Result<i32, common::Error>
-{
-    Ok(changes.iter().fold(0, |acc, change| {
-        acc + change
-    }))
+fn calculate_frequency(changes: Vec<i32>) -> i32 {
+    changes.iter().fold(0, |acc, change| acc + change)
 }
 
 pub fn solve(session: &str) -> Result<String, common::Error> {
     let data = try!(common::get_data(session));
-    calculate_frequency(data).map(|frequency| format!("frequency: {}", frequency))
+    Ok(format!("frequency: {}", calculate_frequency(data)))
 }
 
 #[cfg(test)]
@@ -17,11 +14,7 @@ mod tests {
     use super::*;
 
     fn do_test(input: Vec<&str>, expected: i32) {
-        let result = calculate_frequency(
-            common::parse_values(
-                input.into_iter()
-            ).expect("failed")
-        ).expect("failed");
+        let result = calculate_frequency(common::parse_values(input.into_iter()).expect("failed"));
         assert_eq!(result, expected);
     }
 
