@@ -1,7 +1,7 @@
 use day01::common;
 
 fn calculate_frequency(changes: Vec<i32>) -> i32 {
-    changes.iter().fold(0, |acc, change| acc + change)
+    changes.iter().sum()
 }
 
 pub fn solve(session: &str) -> Result<String, common::Error> {

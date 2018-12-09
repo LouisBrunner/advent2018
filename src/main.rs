@@ -2,6 +2,7 @@
 extern crate custom_error;
 extern crate reqwest;
 extern crate regex;
+extern crate chrono;
 extern crate clap;
 use clap::{App, Arg};
 
@@ -11,6 +12,7 @@ mod core;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 type Puzzle = fn(&str) -> Result<String, core::Error>;
 
@@ -71,6 +73,13 @@ fn main() {
             (
                 day03::puzzle1::solve as Puzzle,
                 day03::puzzle2::solve as Puzzle,
+            ),
+        ),
+        (
+            "4",
+            (
+                day04::puzzle1::solve as Puzzle,
+                day04::puzzle2::solve as Puzzle,
             ),
         ),
     ]
