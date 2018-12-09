@@ -13,6 +13,7 @@ mod day01;
 mod day02;
 mod day03;
 mod day04;
+mod day08;
 
 type Puzzle = fn(&str) -> Result<String, core::Error>;
 
@@ -80,6 +81,13 @@ fn main() {
             (
                 day04::puzzle1::solve as Puzzle,
                 day04::puzzle2::solve as Puzzle,
+            ),
+        ),
+        (
+            "8",
+            (
+                day08::puzzle1::solve as Puzzle,
+                day08::puzzle2::solve as Puzzle,
             ),
         ),
     ]
