@@ -14,6 +14,7 @@ mod day02;
 mod day03;
 mod day04;
 mod day08;
+// mod day09;
 
 type Puzzle = fn(&str) -> Result<String, core::Error>;
 
@@ -90,6 +91,13 @@ fn main() {
                 day08::puzzle2::solve as Puzzle,
             ),
         ),
+        // (
+        //     "9",
+        //     (
+        //         day09::puzzle1::solve as Puzzle,
+        //         day09::puzzle2::solve as Puzzle,
+        //     ),
+        // ),
     ]
     .iter()
     .cloned()
